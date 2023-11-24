@@ -14,11 +14,16 @@ export default class CountriesPage extends HTMLElement {
 
     const search = document.createElement("country-search");
     const filter = document.createElement("country-filter");
+    const countriesSection = document.createElement("section");
+    countriesSection.id = "countries-container";
 
-    this.shadowRoot.append(style, search, filter);
+    this.shadowRoot.append(style, search, filter, countriesSection);
   }
 
   connectedCallback() {
+    window.addEventListener("countrieschange", () => {
+      this.render();
+    });
     this.render();
   }
 
@@ -34,13 +39,24 @@ export default class CountriesPage extends HTMLElement {
 
       const listItems = countries.map((country) => {
         const item = document.createElement("li");
-        item.dataset.country = JSON.stringify(country);
+        const data = {
+          flag: country.flag,
+          name: country.name,
+          population: country.population,
+          region: country.region,
+          capital: country.capital,
+        };
+        item.dataset.country = JSON.stringify(data);
         return item;
       });
 
       list.append(...listItems);
     }
 
-    this.shadowRoot.append(list);
+    const countriesContainer = this.shadowRoot.getElementById(
+      "countries-container"
+    );
+    countriesContainer.innerHTML = "";
+    countriesContainer.append(list);
   }
 }
