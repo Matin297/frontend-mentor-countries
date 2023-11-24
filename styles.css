@@ -22,10 +22,19 @@ body {
 h1,
 h2 {
   font-size: inherit;
+  font-weight: 800;
 }
 
 span {
   display: inline-block;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: transparent;
 }
 
 .header {
@@ -37,12 +46,7 @@ span {
   box-shadow: 0px 3px 6px 0px hsl(0, 0%, 90%);
 }
 
-.header__app-mode > ion-icon {
-  --ionicon-stroke-width: 3rem;
-}
-
 .header__app-mode > span {
-  font-weight: 600;
   margin-left: 0.25rem;
 }
 
