@@ -20,6 +20,10 @@ export default class CountriesPage extends HTMLElement {
       style.innerHTML += styles;
     });
 
+    fetchStyles("/components/", "CountrySearch").then((styles) => {
+      style.innerHTML += styles;
+    });
+
     const search = document.createElement("country-search");
     const filter = document.createElement("country-filter");
     const countriesSection = document.createElement("section");
