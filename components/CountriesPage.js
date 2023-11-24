@@ -6,10 +6,15 @@ export default class CountriesPage extends HTMLElement {
 
     this.attachShadow({ mode: "open" });
 
-    let style = document.createElement("style");
+    let globalStyles = document.createElement("style");
+    let localStyles = document.createElement("style");
 
     fetchStyles("/", "styles").then((styles) => {
-      style.textContent = styles;
+      globalStyles.textContent = styles;
+    });
+
+    fetchStyles("/components/", "CountriesPage").then((styles) => {
+      localStyles.textContent = styles;
     });
 
     const search = document.createElement("country-search");
@@ -17,7 +22,13 @@ export default class CountriesPage extends HTMLElement {
     const countriesSection = document.createElement("section");
     countriesSection.id = "countries-container";
 
-    this.shadowRoot.append(style, search, filter, countriesSection);
+    this.shadowRoot.append(
+      globalStyles,
+      localStyles,
+      search,
+      filter,
+      countriesSection
+    );
   }
 
   connectedCallback() {
@@ -38,7 +49,7 @@ export default class CountriesPage extends HTMLElement {
       list = document.createElement("ul");
 
       const listItems = countries.map((country) => {
-        const item = document.createElement("li");
+        const item = document.createElement("country-item");
         const data = {
           flag: country.flag,
           name: country.name,
