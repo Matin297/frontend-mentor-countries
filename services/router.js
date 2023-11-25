@@ -9,13 +9,14 @@ const ROUTER = {
 
     let page = null;
 
-    switch (path) {
-      case "/":
-      case "/index.html":
-        page = document.createElement("countries-page");
-        break;
-      default:
-        page = document.createElement("not-found");
+    if (path === "/" || path === "/index.html") {
+      page = document.createElement("countries-page");
+    } else if (path.startsWith("/country/")) {
+      page = document.createElement("country-details-page");
+      const [_, __, name = ""] = path.split("/");
+      page.dataset.name = name;
+    } else {
+      page = document.createElement("not-found");
     }
 
     const pageContainer = document.getElementById("page-container");
