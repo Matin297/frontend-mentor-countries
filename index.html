@@ -36,14 +36,16 @@
       </section>
     </template>
     <template id="country-filter-template">
-      <section>
-        <select name="region" id="regionName">
+      <section class="filter">
+        <select name="region" id="regionName" class="filter__select">
+          <option value="">Filter by Region</option>
           <option value="africa">Africe</option>
           <option value="america">America</option>
           <option value="asia">Asia</option>
           <option value="europe">Europe</option>
           <option value="oceania">Oceania</option>
         </select>
+        <ion-icon class="filter__icon" name="chevron-down-outline"></ion-icon>
       </section>
     </template>
     <template id="country-item-template">
