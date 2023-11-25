@@ -1,0 +1,33 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.details__flag {
+  width: 100%;
+}
+
+.details__name {
+  font-size: 1.25rem;
+}
+
+.details__info p:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.details__info span:first-of-type {
+  font-weight: 600;
+}
+
+#go-back {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  box-shadow: 0px 0px 10px 3px hsl(0, 0%, 90%);
+}
