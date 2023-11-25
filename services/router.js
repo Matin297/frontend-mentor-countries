@@ -1,6 +1,10 @@
 const ROUTER = {
   init() {
     this.go(location.pathname);
+
+    window.addEventListener("popstate", (event) => {
+      this.go(event.state.path, false);
+    });
   },
   go(path, addToHistory = true) {
     if (addToHistory) {
