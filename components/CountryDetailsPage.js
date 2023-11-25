@@ -32,6 +32,13 @@ export default class CountryDetailsPage extends HTMLElement {
       decodeURIComponent(this.dataset.name)
     );
 
+    this.shadowRoot
+      .getElementById("go-back")
+      .addEventListener("click", (event) => {
+        event.preventDefault();
+        countries_app.router.go("/");
+      });
+
     this.shadowRoot.querySelector("img").src = country.flag;
     this.shadowRoot.querySelector("h2").textContent = country.name;
 
