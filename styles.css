@@ -21,7 +21,8 @@ body {
   font-size: 1rem;
 }
 
-input {
+input,
+select {
   border: none;
   outline: none;
   background-color: transparent;
