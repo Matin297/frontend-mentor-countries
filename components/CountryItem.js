@@ -17,6 +17,7 @@ export default class CountryItem extends HTMLElement {
 
     this.querySelector("a").addEventListener("click", (event) => {
       event.preventDefault();
+      countries_app.router.go(`/country/${country.name.toLowerCase()}`);
     });
 
     this.querySelector("img").src = country.flag;
