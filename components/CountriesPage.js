@@ -47,9 +47,9 @@ export default class CountriesPage extends HTMLElement {
     let list;
     const countries = countries_app.store.countries;
 
-    if (!countries) {
+    if (!countries || countries.length === 0) {
       list = document.createElement("p");
-      list.textContent = "No countries yet!";
+      list.textContent = "No Countries!";
     } else {
       list = document.createElement("ul");
 
