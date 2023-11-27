@@ -13,9 +13,9 @@ export async function loadCountries(filterCb) {
 
 export const debouncedLoadCountries = debounce(loadCountries);
 
-export async function findCountryByName(name) {
+export async function findCountryBy(finderCb) {
   if (!countries_app.store.countries) {
     await loadCountries();
   }
-  return countries_app.store.countries.find((country) => country.name === name);
+  return countries_app.store.countries.find(finderCb);
 }
