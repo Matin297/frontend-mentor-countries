@@ -21,13 +21,21 @@
   font-weight: 600;
 }
 
-#go-back {
+.details__borders ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.details__back,
+.details__borders li {
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1.3rem;
   border-radius: var(--radius);
   background-color: var(--white);
-  box-shadow: 0px 0px 10px 3px hsl(0, 0%, 90%);
+  box-shadow: 0px 0px 10px 1px hsl(0, 0%, 90%);
 }
