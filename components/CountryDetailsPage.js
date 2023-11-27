@@ -9,12 +9,13 @@ export default class CountryDetailsPage extends HTMLElement {
 
     const style = document.createElement("style");
 
-    fetchStyles("/", "styles").then((styles) => {
-      style.innerHTML += styles;
-    });
-
-    fetchStyles("/components/", "CountryDetailsPage").then((styles) => {
-      style.innerHTML += styles;
+    Promise.allSettled([
+      fetchStyles("/", "styles"),
+      fetchStyles("/components/", "CountryDetailsPage"),
+    ]).then((results) => {
+      results.forEach(({ value }) => {
+        style.innerHTML += value;
+      });
     });
 
     const template = document.getElementById("country-details-template");
