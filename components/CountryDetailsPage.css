@@ -1,11 +1,27 @@
 .details {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 2rem;
 }
 
+.details__header {
+  width: 100%;
+}
+
 .details__flag {
+  width: 100%;
+  max-width: 300px;
+}
+
+.details__info {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.details__borders,
+.details__name {
   width: 100%;
 }
 
@@ -13,11 +29,11 @@
   font-size: 1.25rem;
 }
 
-.details__info p:not(:last-of-type) {
+.details__info-block p:not(:last-of-type) {
   margin-bottom: 1rem;
 }
 
-.details__info span:first-of-type {
+.details__info-block span:first-of-type {
   font-weight: 600;
 }
 
@@ -31,7 +47,7 @@
 .details__back,
 .details__borders li {
   font-size: 0.8rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.2rem 1.3rem;

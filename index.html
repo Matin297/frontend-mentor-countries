@@ -73,52 +73,56 @@
 
     <template id="country-details-template">
       <section class="details">
-        <a class="details__back">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-          <span>Back</span>
-        </a>
+        <section class="details__header">
+          <a class="details__back">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+            <span>Back</span>
+          </a>
+        </section>
         <img class="details__flag" src="" alt="flag" />
-        <h2 class="details__name"></h2>
-        <div class="details__info">
-          <p>
-            <span>Native Name:</span>
-            <span class="details__native-name"></span>
-          </p>
-          <p>
-            <span>Population:</span>
-            <span class="details__population"></span>
-          </p>
-          <p>
-            <span>Region:</span>
-            <span class="details__region"></span>
-          </p>
-          <p>
-            <span>Sub Region:</span>
-            <span class="details__sub-region"></span>
-          </p>
-          <p>
-            <span>Capital:</span>
-            <span class="details__capital"></span>
-          </p>
-        </div>
-        <div class="details__info">
-          <p>
-            <span>Top Level Domain:</span>
-            <span class="details__tl-domain"></span>
-          </p>
-          <p>
-            <span>Currencies:</span>
-            <span class="details__currencies"></span>
-          </p>
-          <p>
-            <span>Languages:</span>
-            <span class="details__languages"></span>
-          </p>
-        </div>
-        <div class="details__borders">
-          <h3>Border Countries</h3>
-          <ul></ul>
-        </div>
+        <section class="details__info">
+          <h2 class="details__name"></h2>
+          <div class="details__info-block">
+            <p>
+              <span>Native Name:</span>
+              <span class="details__native-name"></span>
+            </p>
+            <p>
+              <span>Population:</span>
+              <span class="details__population"></span>
+            </p>
+            <p>
+              <span>Region:</span>
+              <span class="details__region"></span>
+            </p>
+            <p>
+              <span>Sub Region:</span>
+              <span class="details__sub-region"></span>
+            </p>
+            <p>
+              <span>Capital:</span>
+              <span class="details__capital"></span>
+            </p>
+          </div>
+          <div class="details__info-block">
+            <p>
+              <span>Top Level Domain:</span>
+              <span class="details__tl-domain"></span>
+            </p>
+            <p>
+              <span>Currencies:</span>
+              <span class="details__currencies"></span>
+            </p>
+            <p>
+              <span>Languages:</span>
+              <span class="details__languages"></span>
+            </p>
+          </div>
+          <div class="details__borders">
+            <h3>Border Countries</h3>
+            <ul></ul>
+          </div>
+        </section>
       </section>
     </template>
 
