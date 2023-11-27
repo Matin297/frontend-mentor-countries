@@ -8,24 +8,16 @@ export default class CountriesPage extends HTMLElement {
 
     const style = document.createElement("style");
 
-    fetchStyles("/", "styles").then((styles) => {
-      style.innerHTML += styles;
-    });
-
-    fetchStyles("/components/", "CountriesPage").then((styles) => {
-      style.innerHTML += styles;
-    });
-
-    fetchStyles("/components/", "CountryItem").then((styles) => {
-      style.innerHTML += styles;
-    });
-
-    fetchStyles("/components/", "CountrySearch").then((styles) => {
-      style.innerHTML += styles;
-    });
-
-    fetchStyles("/components/", "CountryFilter").then((styles) => {
-      style.innerHTML += styles;
+    Promise.allSettled([
+      fetchStyles("/", "styles"),
+      fetchStyles("/components/", "CountriesPage"),
+      fetchStyles("/components/", "CountryItem"),
+      fetchStyles("/components/", "CountrySearch"),
+      fetchStyles("/components/", "CountryFilter"),
+    ]).then((results) => {
+      results.forEach(({ value }) => {
+        style.innerHTML += value;
+      });
     });
 
     const search = document.createElement("country-search");
