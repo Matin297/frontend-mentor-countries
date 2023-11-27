@@ -1,5 +1,5 @@
 import { fetchStyles } from "../services/api.js";
-import { findCountryByName } from "../services/countries.js";
+import { findCountryBy } from "../services/countries.js";
 
 export default class CountryDetailsPage extends HTMLElement {
   constructor() {
@@ -28,12 +28,12 @@ export default class CountryDetailsPage extends HTMLElement {
   }
 
   async render() {
-    const country = await findCountryByName(
-      decodeURIComponent(this.dataset.name)
+    const country = await findCountryBy(
+      (country) => country.name === decodeURIComponent(this.dataset.name)
     );
 
     this.shadowRoot
-      .getElementById("go-back")
+      .querySelector(".details__back")
       .addEventListener("click", (event) => {
         event.preventDefault();
         countries_app.router.go("/");
@@ -59,5 +59,31 @@ export default class CountryDetailsPage extends HTMLElement {
       country.currencies.map(({ name }) => name).join(", ");
     this.shadowRoot.querySelector(".details__languages").textContent =
       country.languages.map(({ name }) => name).join(", ");
+
+    if (country.borders) {
+      const bordersContainer =
+        this.shadowRoot.querySelector(".details__borders");
+      bordersContainer.hidden = false;
+
+      const borderElements = country.borders.map((border) => {
+        const borderName = countries_app.store.countries.find(
+          (country) => country.alpha3Code === border
+        ).name;
+
+        const borderElement = document.createElement("li");
+        const anchor = document.createElement("a");
+        anchor.textContent = borderName;
+        borderElement.append(anchor);
+        return borderElement;
+      });
+
+      bordersContainer.querySelector("ul").append(...borderElements);
+      bordersContainer.addEventListener("click", (event) => {
+        if (event.target.tagName === "A") {
+          event.preventDefault();
+          countries_app.router.go(`/country/${event.target.textContent}`);
+        }
+      });
+    }
   }
 }
