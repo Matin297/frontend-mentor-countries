@@ -22,10 +22,15 @@ export default class CountriesPage extends HTMLElement {
 
     const search = document.createElement("country-search");
     const filter = document.createElement("country-filter");
+
+    const filterSection = document.createElement("section");
+    filterSection.id = "filter-container";
+    filterSection.append(search, filter);
+
     const countriesSection = document.createElement("section");
     countriesSection.id = "countries-container";
 
-    this.shadowRoot.append(style, search, filter, countriesSection);
+    this.shadowRoot.append(style, filterSection, countriesSection);
   }
 
   connectedCallback() {

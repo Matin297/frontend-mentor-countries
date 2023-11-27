@@ -1,3 +1,17 @@
+#filter-container {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+country-search {
+  flex-grow: 1;
+  max-width: 500px;
+}
+
 #countries-container {
   padding: 0 2rem;
 }
