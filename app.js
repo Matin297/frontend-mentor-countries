@@ -16,3 +16,22 @@ window.addEventListener("DOMContentLoaded", () => {
   countries_app.router.init();
   loadCountries();
 });
+
+document.getElementById("theme-switch").addEventListener("click", (event) => {
+  const button = event.currentTarget;
+  let theme, name, icon;
+
+  if (document.documentElement.dataset.theme === "dark") {
+    theme = "light";
+    icon = "moon-outline";
+    name = "Dark Mode";
+  } else {
+    theme = "dark";
+    icon = "sunny-outline";
+    name = "Light Mode";
+  }
+
+  document.documentElement.dataset.theme = theme;
+  button.querySelector("span").textContent = name;
+  button.querySelector("ion-icon").name = icon;
+});

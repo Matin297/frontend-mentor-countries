@@ -85,8 +85,10 @@ a {
   box-shadow: 0px 3px 6px 0px var(--shadow-color);
 }
 
-.header__app-mode > span {
-  margin-left: 0.25rem;
+#theme-switch {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .main {
