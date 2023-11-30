@@ -4,7 +4,14 @@ import { findCountryBy } from "../services/countries.js";
 export default class CountryDetailsPage extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
+    this.init();
+    this.render();
+  }
+
+  init() {
     this.attachShadow({ mode: "open" });
 
     const style = document.createElement("style");
@@ -22,10 +29,6 @@ export default class CountryDetailsPage extends HTMLElement {
     const content = template.content.cloneNode(true);
 
     this.shadowRoot.append(style, content);
-  }
-
-  connectedCallback() {
-    this.render();
   }
 
   async render() {
