@@ -1,24 +1,41 @@
-import { fetchStyles } from "../services/api.js";
+const STYLE_SHEETS = [
+  {
+    path: "/",
+    name: "styles",
+  },
+  {
+    path: "/components/",
+    name: "CountriesPage",
+  },
+  {
+    path: "/components/",
+    name: "CountryItem",
+  },
+  {
+    path: "/components/",
+    name: "CountrySearch",
+  },
+  {
+    path: "/components/",
+    name: "CountryFilter",
+  },
+];
 
 export default class CountriesPage extends HTMLElement {
   constructor() {
     super();
+  }
 
-    this.attachShadow({ mode: "open" });
-
-    const style = document.createElement("style");
-
-    Promise.allSettled([
-      fetchStyles("/", "styles"),
-      fetchStyles("/components/", "CountriesPage"),
-      fetchStyles("/components/", "CountryItem"),
-      fetchStyles("/components/", "CountrySearch"),
-      fetchStyles("/components/", "CountryFilter"),
-    ]).then((results) => {
-      results.forEach(({ value }) => {
-        style.innerHTML += value;
-      });
+  connectedCallback() {
+    window.addEventListener("countrieschange", () => {
+      this.render();
     });
+    this.init();
+    this.render();
+  }
+
+  init() {
+    this.attachShadow({ mode: "open" });
 
     const search = document.createElement("country-search");
     const filter = document.createElement("country-filter");
@@ -30,14 +47,9 @@ export default class CountriesPage extends HTMLElement {
     const countriesSection = document.createElement("section");
     countriesSection.id = "countries-container";
 
-    this.shadowRoot.append(style, filterSection, countriesSection);
-  }
+    const stylesheets = this.generateStylesheetLinks();
 
-  connectedCallback() {
-    window.addEventListener("countrieschange", () => {
-      this.render();
-    });
-    this.render();
+    this.shadowRoot.append(...stylesheets, filterSection, countriesSection);
   }
 
   render() {
@@ -71,5 +83,14 @@ export default class CountriesPage extends HTMLElement {
     );
     countriesContainer.innerHTML = "";
     countriesContainer.append(list);
+  }
+
+  generateStylesheetLinks() {
+    return STYLE_SHEETS.map(({ name, path }) => {
+      const link = document.createElement("link");
+      link.href = `${path}${name}.css`;
+      link.rel = "stylesheet";
+      return link;
+    });
   }
 }
