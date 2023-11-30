@@ -1,5 +1,15 @@
-import { fetchStyles } from "../services/api.js";
 import { findCountryBy } from "../services/countries.js";
+
+const STYLE_SHEETS = [
+  {
+    path: "/",
+    name: "styles",
+  },
+  {
+    path: "/components/",
+    name: "CountryDetailsPage",
+  },
+];
 
 export default class CountryDetailsPage extends HTMLElement {
   constructor() {
@@ -14,21 +24,12 @@ export default class CountryDetailsPage extends HTMLElement {
   init() {
     this.attachShadow({ mode: "open" });
 
-    const style = document.createElement("style");
-
-    Promise.allSettled([
-      fetchStyles("/", "styles"),
-      fetchStyles("/components/", "CountryDetailsPage"),
-    ]).then((results) => {
-      results.forEach(({ value }) => {
-        style.innerHTML += value;
-      });
-    });
-
     const template = document.getElementById("country-details-template");
     const content = template.content.cloneNode(true);
 
-    this.shadowRoot.append(style, content);
+    const stylesheets = this.generateStylesheetLinks();
+
+    this.shadowRoot.append(...stylesheets, content);
   }
 
   async render() {
@@ -89,5 +90,14 @@ export default class CountryDetailsPage extends HTMLElement {
         }
       });
     }
+  }
+
+  generateStylesheetLinks() {
+    return STYLE_SHEETS.map(({ name, path }) => {
+      const link = document.createElement("link");
+      link.href = `${path}${name}.css`;
+      link.rel = "stylesheet";
+      return link;
+    });
   }
 }
