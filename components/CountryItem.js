@@ -22,7 +22,8 @@ export default class CountryItem extends HTMLElement {
 
     this.querySelector("img").src = country.flag;
     this.querySelector("h2").textContent = country.name;
-    this.querySelector(".country__population").textContent = country.population;
+    this.querySelector(".country__population").textContent =
+      country.population.toLocaleString();
     this.querySelector(".country__region").textContent = country.region;
     this.querySelector(".country__capital").textContent = country.capital;
   }
