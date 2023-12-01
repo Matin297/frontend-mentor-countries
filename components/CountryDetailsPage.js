@@ -50,7 +50,7 @@ export default class CountryDetailsPage extends HTMLElement {
     this.shadowRoot.querySelector(".details__native-name").textContent =
       country.nativeName;
     this.shadowRoot.querySelector(".details__population").textContent =
-      country.population;
+      country.population.toLocaleString();
     this.shadowRoot.querySelector(".details__region").textContent =
       country.region;
     this.shadowRoot.querySelector(".details__sub-region").textContent =
